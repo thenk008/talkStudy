@@ -32,8 +32,8 @@ public interface SqlMapper {
     void updateTree(MyTree myTree);
 
     //插入一个新的分类,并返回它的主键id
-    @Insert("insert into mytree (describe,grade,father_id,is_active) values " +
-            "(#{describe},#{grade},#{father_id},#{is_active})")
+    @Insert("insert into mytree (des,grade,father_id,is_active)values" +
+            "(#{des},#{grade},#{father_id},#{is_active})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int saveTree(MyTree myTree);
 

@@ -38,9 +38,10 @@ public class TalkService {
     @Transactional
     public Response insertTree(MyTree myTree) {
         Response response = bean.response();
-        String desc = myTree.getDescribe();//描述
+        String desc = myTree.getDes();//描述
         int grade = myTree.getGrade();//当前等级
         if (desc != null && grade > 0) {
+            myTree.setIs_active((byte) 1);
             sql.saveTree(myTree);
             response.setError(ErrorMessage.OK.getCode());
             response.setErrorMessage(ErrorMessage.OK.getMessage());
@@ -105,7 +106,7 @@ public class TalkService {
                     if (des != null) {//增加新的三级
                         MyTree myTreeThree = bean.myTree();
                         myTreeThree.setIs_active((byte) 1);
-                        myTreeThree.setDescribe(des);
+                        myTreeThree.setDes(des);
                         myTreeThree.setFather_id(id);
                         myTreeThree.setGrade(3);//新的三级
                         int thirdKey = sql.saveTree(myTreeThree);
